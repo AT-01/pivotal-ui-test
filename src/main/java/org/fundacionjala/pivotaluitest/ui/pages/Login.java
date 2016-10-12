@@ -60,7 +60,7 @@ public class Login extends AbstractBasePage {
     /**
      * Method to perform a login as Primary user.
      *
-     * @return Login to Mach2 application.
+     * @return Login to PivotalTracker application.
      */
     public static Home loginAsPrimaryUser() {
         final String userName = Environment.getInstance().getPrimaryUser();
@@ -69,7 +69,7 @@ public class Login extends AbstractBasePage {
     }
 
     /**
-     * Method used to perform a login to Mach2 application.
+     * Method used to perform a login to PivotalTracker application.
      *
      * @param userName Username used to perform a login to Mach2 application.
      * @param password Password used to perform a login to Mach2 application.
