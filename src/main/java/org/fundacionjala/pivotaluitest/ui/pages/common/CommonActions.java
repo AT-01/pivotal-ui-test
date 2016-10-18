@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotaluitest.ui.pages.common;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,5 +73,17 @@ public final class CommonActions {
     public static String getText(final WebElement webElement) {
         DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
+    }
+
+    /**
+     * This method waits and fill the element.
+     *
+     * @param webElement Element to wait and fill.
+     * @param keyAction   key to press.
+     */
+    public static void sendAndPressKey(final WebElement webElement, final Keys keyAction) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        webElement.clear();
+        webElement.sendKeys(keyAction);
     }
 }
