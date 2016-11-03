@@ -56,9 +56,25 @@ task executeFeatures() {
                         '--plugin', 'html:build/cucumber-html-report',
                         '--plugin', 'json:build/cucumber.json',
                         '--plugin', 'rerun:build/rerun.txt',
-                        '--glue', 'org.fundacionjala.dashboard', 'src/test/resources/features']
+                        '--glue', 'org.fundacionjala.pivotaluitest','src/test/resources/features']
+                // execution by feature folders
+                //splitFeatureFolders(featureFolders).each { String item -> args += [item] }
+                jvmArgs = ["-DauthenticationBrowser=" + authenticationBrowser]
                 jvmArgs = ["-Dtoken=" + token]
                 jvmArgs = ["-Dproxy=" + proxy]
+                jvmArgs = ["-DprimaryAuthenticationUser=" + primaryAuthenticationUser]
+                jvmArgs = ["-DprimaryAuthenticationPassword=" + primaryAuthenticationPassword]
+                jvmArgs = ["-DbrowserStackUser=" + browserStackUser]
+                jvmArgs = ["-DbrowserStackKey=" + browserStackKey]
+                jvmArgs = ["-DbrowserstackDebug=" + browserstackDebug]
+                jvmArgs = ["-Dbrowser=" + browser]
+                jvmArgs = ["-Dbrowser_version=" + browser_version]
+                jvmArgs = ["-Dos_version=" + os_version]
+                jvmArgs = ["-Dresolution=" + resolution]
+                jvmArgs = ["-Dbuilded=" + builded]
+                jvmArgs = ["-Dos=" + os]
+                jvmArgs = ["-Dhost=" + host]
+                jvmArgs = ["-Dport=" + port]
             }
         } catch (Exception e) {
             //In order to avoid FAILURE: Build failed with an exception.
@@ -77,8 +93,16 @@ def static generateReport(String pathCucumber, String pathReport) {
     File reportOutputDirectory = new File(pathReport)
     List<String> jsonReportFiles = new ArrayList<>()
     jsonReportFiles.add(pathCucumber)
-    String buildProjectName = "pivotal-api-test"
+    String buildProjectName = "pivotaluitest"
     net.masterthought.cucumber.Configuration configuration = new net.masterthought.cucumber.Configuration(reportOutputDirectory, buildProjectName)
     ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration)
     reportBuilder.generateReports()
+}
+
+def static List<String> splitFeatureFolders(String featureFolders) {
+    def featureBasePath = "src/test/resources/features/"
+    String[] listFeatureFolders = featureFolders.split(",")
+    List<String> listFeaturesPath = featureFolders.split(",")
+    listFeatureFolders.each { String item -> listFeaturesPath.add(featureBasePath + item.trim()) }
+    return listFeaturesPath;
 }

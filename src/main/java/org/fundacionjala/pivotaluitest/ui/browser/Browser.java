@@ -5,6 +5,7 @@ package org.fundacionjala.pivotaluitest.ui.browser;
  */
 public enum Browser {
     CHROME,
-    SAFARI,
-    FIREFOX
+    REMOTE,
+    FIREFOX,
+    IE
 }

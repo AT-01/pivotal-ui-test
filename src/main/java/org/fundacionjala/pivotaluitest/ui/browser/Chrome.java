@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Chrome implements Driver {
 
-    private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver2.2.exe";
+    private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver2.25.exe";
 
     private static final String WEB_DRIVER_KEY = "webdriver.chrome.driver";
 

@@ -25,15 +25,35 @@ public final class Environment {
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
 
-    private static final String PRIMARY_AUTHENTICATION_USER = "primaryAuthentication.user";
+    private static final String PRIMARY_AUTHENTICATION_USER = "primaryAuthenticationUser";
 
-    private static final String PRIMARY_AUTHENTICATION_PASS = "primaryAuthentication.password";
+    private static final String PRIMARY_AUTHENTICATION_PASS = "primaryAuthenticationPassword";
 
     private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
-    private static final String AUTHENTICATION_BROWSER = "authentication.browser";
+    private static final String AUTHENTICATION_BROWSER = "authenticationBrowser";
+
+    private static final String BROWSER = "browser";
+
+    private static final String BROWSER_VERSION = "browser_version";
+
+    private static final String OS = "os";
+
+    private static final String OS_VERSION = "os_version";
+
+    private static final String RESOLUTION = "resolution";
+
+    private static final String BROWSER_STACK_DEBUG = "browserstackDebug";
+
+    private static final String BUILD = "builded";
+
+    private static final String PORT = "port";
+
+    private static final String HOST = "host";
 
     private static final String TIMEOUT = "timeout";
+    public static final String BROWSER_STACK_USER = "browserStackUser";
+    public static final String BROWSER_STACK_KEY = "browserStackKey";
 
     private static Environment environment;
 
@@ -150,5 +170,104 @@ public final class Environment {
      */
     public String getBaseUrl() {
         return getEnv(AUTHENTICATION_BASE_URL);
+    }
+
+    /**
+     * Get the browser stack user.
+     *
+     * @return String browser stack user.
+     */
+    public String getBrowserStackUser() {
+        return getEnv(BROWSER_STACK_USER);
+    }
+
+    /**
+     * Get the browser stack key.
+     *
+     * @return String browser stack key.
+     */
+    public String getBrowserStackKey() {
+        return getEnv(BROWSER_STACK_KEY);
+    }
+
+    /**
+     * Get the browser for remote configuration.
+     *
+     * @return String browser.
+     */
+    public String getBrowserCapability() {
+        return getEnv(BROWSER);
+    }
+
+    /**
+     * Get the permission of debug.
+     *
+     * @return true or false.
+     */
+    public String getStackDebug() {
+        return getEnv(BROWSER_STACK_DEBUG);
+    }
+
+    /**
+     * Get the build name.
+     *
+     * @return String build name.
+     */
+    public String getBuild() {
+        return getEnv(BUILD);
+    }
+
+    /**
+     * Get the operative system.
+     *
+     * @return String operative system name.
+     */
+    public String getOS() {
+        return getEnv(OS);
+    }
+
+    /**
+     * Get the operative system version.
+     *
+     * @return String operative system version.
+     */
+    public String getOSVersion() {
+        return getEnv(OS_VERSION);
+    }
+
+    /**
+     * Get the browser version configuration.
+     *
+     * @return String browser version.
+     */
+    public String getBrowserVersion() {
+        return getEnv(BROWSER_VERSION);
+    }
+
+    /**
+     * Get the resolution for remote configuration.
+     *
+     * @return String resolution.
+     */
+    public String getResolution() {
+        return getEnv(RESOLUTION);
+    }
+
+    /**
+     * Get the proxy port.
+     *
+     * @return String proxy port.
+     */
+    public Object getPort() {
+        return getEnv(PORT);
+    }
+
+    /**
+     * Get the proxy host.
+     *
+     * @return String proxy host.
+     */
+    public Object getHost() {
+        return getEnv(HOST);
     }
 }
