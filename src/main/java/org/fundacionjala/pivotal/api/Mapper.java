@@ -1,11 +1,11 @@
 package org.fundacionjala.pivotal.api;
 
+import io.restassured.response.Response;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import io.restassured.response.Response;
 
 import static io.restassured.path.json.JsonPath.from;
 
