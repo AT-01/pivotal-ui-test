@@ -114,10 +114,13 @@ public class Workspace extends AbstractBasePage {
         return strategyMapWorkspaceFieldsCreate;
     }
 
+    /**
+     * This method will retrieve a name of Workspaces.
+     * @return an String with name of Workspaces
+     */
     public String getWorkspaceNameText() {
         return toolBarWorkspace.getWorkspaceNameText();
     }
-
 
     /**
      * This method return the side bar of the workspace.

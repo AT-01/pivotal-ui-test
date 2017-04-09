@@ -8,8 +8,11 @@ import org.fundacionjala.pivotal.ui.pages.Dashboard;
 import org.fundacionjala.pivotal.ui.pages.SignInForm;
 import org.fundacionjala.pivotal.ui.pages.common.CommonNavigator;
 import org.testng.Assert;
-import org.testng.annotations.*;
-
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterSuite;
 import static org.fundacionjala.pivotal.utils.Constants.DELETE_MESSAGE;
 import static org.fundacionjala.pivotal.utils.Constants.SAVED_MESSAGE;
 
@@ -31,7 +34,7 @@ public class WorkSpacesTests {
      */
     @BeforeClass
     public void beforeClass() {
-        SignInForm.loginAs("selenium.daniel.1@yopmail.com","daniel.123");
+        SignInForm.loginAs("selenium.daniel.1@yopmail.com", "daniel.123");
         CommonNavigator.goToDashboard();
     }
 
@@ -50,16 +53,12 @@ public class WorkSpacesTests {
         Assert.assertEquals(nameOfWorkSpace, w.getWorkspaceNameText());
     }
 
-    @BeforeMethod
-    public void addWorkSpaceEditTest() {
-
-    }
     /**
-     * testEditWorkSpace
+     * testEditWorkSpace.
      */
     @Test
     public void testEditWorkSpace() {
-        Response response = RequestManager.post("/my/workspaces", "{\"name\":\"Test_Auto_WorkSpace\"}");
+        RequestManager.post("/my/workspaces", "{\"name\":\"Test_Auto_WorkSpace\"}");
         CommonNavigator.goToDashboard();
         final String nameOfWorkSpace = "Test_Auto_WorkSpace";
         final String nameOfWorkSpaceUpdated = "TestAutoWorkSpaceEdited";
@@ -71,16 +70,12 @@ public class WorkSpacesTests {
         Assert.assertEquals(SAVED_MESSAGE, sw.getMessageChangesWorkspace());
     }
 
-    @BeforeMethod
-    public void addWorkSpaceDeleteTest() {
-
-    }
     /**
-     * testDeleteWorkSpace
+     * testDeleteWorkSpace.
      */
     @Test
     public void testDeleteWorkSpace() {
-        Response response = RequestManager.post("/my/workspaces", "{\"name\":\"TestAutoWorkSpaceEdited\"}");
+        RequestManager.post("/my/workspaces", "{\"name\":\"TestAutoWorkSpaceEdited\"}");
         CommonNavigator.goToDashboard();
         final String nameOfWorkSpaceUpdated = "TestAutoWorkSpaceEdited";
         Dashboard d = new Dashboard();
@@ -98,8 +93,8 @@ public class WorkSpacesTests {
     public void removeWorkspaces() {
         Response response = RequestManager.get("/my/workspaces");
         JsonPath jsonPath = response.getBody().jsonPath();
-        String id = jsonPath.getString("id").replace("[","").replace("]","");
-        RequestManager.delete("/my/workspaces/"+ id );
+        String id = jsonPath.getString("id").replace("[", "").replace("]", "");
+        RequestManager.delete("/my/workspaces/" + id);
     }
 
     /**

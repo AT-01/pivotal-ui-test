@@ -124,7 +124,11 @@ public class Dashboard extends AbstractBasePage {
         driver.navigate().refresh();
     }
 
-
+    /**
+     * This method click in config icon of Workspace.
+     * @param nameProject is a string with name of workspace
+     * @return a SettingWorkspace page object.
+     */
     public SettingWorkspace clickConfigIconWorkSpace(final String nameProject) {
         final String selector = String.format("//a[text()=('%s')]/following-sibling::span/a", nameProject);
         By bLocator = new By.ByXPath(selector);
@@ -135,6 +139,4 @@ public class Dashboard extends AbstractBasePage {
         CommonActions.clickElement(wConfigBtn);
         return new SettingWorkspace();
     }
-
-
 }
