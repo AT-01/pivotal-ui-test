@@ -1,3 +1,5 @@
+import org.ajoberstar.grgit.Grgit;
+
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -5,6 +7,15 @@ apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.ajoberstar:grgit:1.9.1'
+    }
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -20,15 +31,46 @@ dependencies {
     compile group: 'org.testng', name: 'testng', version: '6.11'
 }
 
-// Checkstyle configuration
-checkstyle {
-    toolVersion = '7.6'
+test {
+    exclude 'org/fundacionjala/pivotal/**'
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+    }
 }
 
-// FindBugs configuration
-findbugs {
-    toolVersion = "3.0.1"
+// gather diffs used for static analysis checks (checkstyle, pmd, findbugs)
+def diffs = getLocalDiffs()
+
+/**
+ * Returns added or changed files in the working copy.
+ * @return list of locally added or changed files (staged or unstaged)
+ */
+def getLocalDiffs() {
+    def grgit = Grgit.open(dir: projectDir)
+    def status = grgit.status()
+    status.staged.added + status.staged.modified + status.unstaged.added + status.unstaged.modified
 }
+
+// Checkstyle configuration
+task checkstyleChangedFiles(type: Checkstyle) {
+    checkstyle {
+        toolVersion = '7.6'
+    }
+
+    description 'Runs Checkstyle analysis on modified files.'
+
+    classpath = configurations.compile + configurations.testCompile
+    source(diffs)
+
+    doFirst {
+        println("Running CheckStyle on " + diffs)
+    }
+}
+
+// Run first (fail faster) as file changes invalidate tests.
+compileJava.mustRunAfter checkstyleChangedFiles
+
+// FindBugs configuration
 tasks.withType(FindBugs) {
     reports {
         xml.enabled = false
@@ -37,9 +79,6 @@ tasks.withType(FindBugs) {
 }
 
 // PMD Configuration
-pmd {
-    toolVersion = '5.5.4'
-}
 tasks.withType(Pmd) {
     reports {
         xml.enabled = false
@@ -47,9 +86,16 @@ tasks.withType(Pmd) {
     }
 }
 
-test {
-    exclude 'org/fundacionjala/pivotal/**'
-    testLogging {
-        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+task pmdChangedFiles(type: Pmd) {
+    pmd {
+        toolVersion = '5.5.4'
+    }
+    description 'Runs PMD analysis on modified files.'
+    classpath = configurations.compile + configurations.testCompile
+    source(diffs)
+    doFirst {
+        println("Running PMD on " + diffs)
     }
 }
+
+pmdChangedFiles.mustRunAfter testClasses
