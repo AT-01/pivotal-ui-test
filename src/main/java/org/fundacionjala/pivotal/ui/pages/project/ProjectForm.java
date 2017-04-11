@@ -1,48 +1,47 @@
 package org.fundacionjala.pivotal.ui.pages.project;
 
-import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
-import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_NAME;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
+import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
+
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.ACCOUNT;
+import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_NAME;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_PRIVACY;
 
 /**
  * This class is Project form to PivotalTracker.
  */
+
 public class ProjectForm extends AbstractBasePage {
-    @FindBy(css = "input[class=\" tc-form__input\"]")
+    @FindBy(css="button[class=\"button button--action\"]")
+    private WebElement createProjectButton;
+    @FindBy(css="input[type=\"text\"]")
     private WebElement projectNameTextField;
-
-    @FindBy(className = "tc-account-selector")
-    private WebElement accountDropDownList;
-
-    @FindBy(className = "tc-account-selector__option-account-name")
-    private WebElement accountOptionDropDownList;
-
-    @FindBy(css = ".tc-form-modal-footer__button.tc-form-modal-footer__button--submit")
-    private WebElement createButton;
-
-    @FindBy(css = "div[data-aid='create-account-button']")
+    @FindBy(css="div[class=\"tc-account-selector\"]")
+    private WebElement dropdownAccountButton;//this one may not belong here
+    @FindBy(css="span[class=\"tc-account-selector__create-account-text\"]")
     private WebElement createAccountButtonOptionDropDownList;
-
-    @FindBy(css = "input.tc-account-creator__name")
+    @FindBy(css="input[class=\"tc-account-creator__name\"]")
     private WebElement newAccountProjectTextField;
+    @FindBy(css="input[value=\"public\"]")
+    private WebElement radioButtonPublic;
+    @FindBy(css="button[type=\"submit\"]")
+    private WebElement saveNewProjectButton;
 
     /**
      * This method set the projectName in the text field.
      *
      * @param projectName String whit the projectName.
      */
-    private void setProjectNameTextField(final String projectName) {
+    public void setProjectNameTextField(final String projectName) {
         CommonActions.clearTextField(projectNameTextField);
         CommonActions.sendKeys(projectNameTextField, projectName);
     }
@@ -52,15 +51,14 @@ public class ProjectForm extends AbstractBasePage {
      *
      * @param account That is to search.
      */
-    private void setAccountDropDownList(final String account) {
-        CommonActions.clickElement(accountDropDownList);
+    public void setAccountDropDownList(final String account) {
+        CommonActions.clickElement(dropdownAccountButton);
         List<WebElement> menuBodyList = driver.findElements(By.xpath("//div[contains(text(), '" + account + "')]"));
         if (menuBodyList.isEmpty()) {
             CommonActions.clickElement(createAccountButtonOptionDropDownList);
             CommonActions.clearTextField(newAccountProjectTextField);
             CommonActions.sendKeys(newAccountProjectTextField, account);
         } else {
-
             final int index = 0;
             CommonActions.clickElement(menuBodyList.get(index));
         }
@@ -72,7 +70,11 @@ public class ProjectForm extends AbstractBasePage {
      * @return {@link ProjectManagement}
      */
     public ProjectManagement clickCreateProjectButton() {
-        CommonActions.clickElement(createButton);
+        CommonActions.clickElement(createProjectButton);
+        return new ProjectManagement();
+    }
+    public ProjectManagement clickCreateButton() {
+        CommonActions.clickElement(saveNewProjectButton);
         return new ProjectManagement();
     }
 
@@ -81,9 +83,9 @@ public class ProjectForm extends AbstractBasePage {
      *
      * @param projectPrivacyType return project privacy type.
      */
-    private void selectedProjectPrivacy(final ProjectPrivacy projectPrivacyType) {
+    public void selectedProjectPrivacy(final ProjectPrivacy projectPrivacyType) {
         WebElement projectPrivacy =
-                driver.findElement(By.cssSelector("input[data-aid='" + projectPrivacyType.toString() + "']"));
+                driver.findElement(By.cssSelector("input[value='" + projectPrivacyType.toString() + "']"));
         CommonActions.clickElement(projectPrivacy);
     }
 
