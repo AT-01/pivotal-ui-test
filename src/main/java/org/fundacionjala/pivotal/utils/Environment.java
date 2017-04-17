@@ -48,6 +48,8 @@ public final class Environment {
     private static final String REMOTE_RESOLUTION = "remoteResolution";
     private static final String PROJECT_NAME = "projectName";
     private static final String ACCOUNT_NAME = "accountName";
+    private static final String PROJECT_NEW_NAME = "newprojectName";
+    private static final String DESCRIPTION_NAME = "newdescriptionName";
 
 
     private static Environment environment;
@@ -260,4 +262,19 @@ public final class Environment {
      * @return String remote account's name
      */
     public String getAccountName() { return getEnv(ACCOUNT_NAME);}
+
+    /**
+     * Get the account's name
+     *
+     * @return String remote account's name
+     */
+    public String getProjectNewName() { return getEnv(PROJECT_NEW_NAME);}
+
+    /**
+     * Get the account's name
+     *
+     * @return String remote account's name
+     */
+    public String getDescriptionName() { return getEnv(DESCRIPTION_NAME);}
+
 }

@@ -12,7 +12,7 @@ import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
  */
 public class TopMenu extends AbstractBasePage {
 
-    @FindBy(css = "div.undefined.tc_profile_dropdown > div.tc_dropdown > a.tc_dropdown_name")
+    @FindBy(css = "div[class=\"undefined tc_profile_dropdown\"]")
     private WebElement userNameDropDown;
 
     @FindBy(css = "a[href='/accounts']")

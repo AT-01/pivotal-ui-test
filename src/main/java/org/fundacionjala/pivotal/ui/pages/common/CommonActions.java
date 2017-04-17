@@ -1,9 +1,9 @@
 package org.fundacionjala.pivotal.ui.pages.common;
 
+import org.fundacionjala.pivotal.ui.browser.DriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import org.fundacionjala.pivotal.ui.browser.DriverManager;
 
 /**
  * This is class wait to load the element.
@@ -58,4 +58,5 @@ public final class CommonActions {
         DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
     }
+
 }
