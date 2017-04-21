@@ -52,6 +52,20 @@ tasks.withType(Pmd) {
 
 test {
     useTestNG()
+
+    options {
+        suites 'src/test/resources/suite1.xml'
+        includeGroups
+        listeners << 'org.fundacionjala.pivotal.testng.SuiteListener'
+        listeners << 'org.fundacionjala.pivotal.testng.TestListener'
+    }
+
+    systemProperty 'authenticationBaseURL', authenticationBaseURL
+    systemProperty 'user', user
+    systemProperty 'password', password
+    systemProperty 'authenticationBaseURI', authenticationBaseURI
+    systemProperty 'token', token
+    systemProperty 'timeout', timeout
     systemProperty 'browser', browser
 
     scanForTestClasses false
