@@ -32,7 +32,7 @@ public final class DriverManager {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         driver.get(baseUrl);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Environment.getInstance().getTimeout());
+        wait = new WebDriverWait(driver, timeout);
     }
 
     /**

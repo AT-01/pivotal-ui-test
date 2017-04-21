@@ -7,5 +7,5 @@ public enum Browser {
     CHROME,
     FIREFOX,
     BROWSERSTACK,
-    SAUCELABS
+    SAUCELABS;
 }
