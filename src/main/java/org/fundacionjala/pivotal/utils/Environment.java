@@ -8,13 +8,11 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 /**
  * This class is in charge to set the default  parameters to
  * establishes the connection with pivotal tracker.
  */
 public final class Environment {
-
 
     private static final Logger LOGGER = LogManager.getLogger(Environment.class);
 
@@ -24,13 +22,13 @@ public final class Environment {
 
     private static final String AUTHENTICATION_PROXY = "proxy";
 
-    private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
+    private static final String AUTHENTICATION_BASE_URI = "authenticationBaseURI";
 
     private static final String PRIMARY_AUTHENTICATION_USER = "user";
 
     private static final String PRIMARY_AUTHENTICATION_PASS = "password";
 
-    private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
+    private static final String AUTHENTICATION_BASE_URL = "authenticationBaseURL";
 
     private static final String AUTHENTICATION_BROWSER = "browser";
 

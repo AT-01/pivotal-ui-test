@@ -16,7 +16,9 @@ dependencies {
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.3.1'
     compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.2'
     compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.2'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
+
     compile group: 'org.testng', name: 'testng', version: '6.11'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
 
@@ -40,7 +42,8 @@ tasks.withType(FindBugs) {
 
 // PMD Configuration
 pmd {
-    toolVersion = '5.5.4'
+    toolVersion = '5.5.1'
+    ruleSets = ["java-basic"]
 }
 tasks.withType(Pmd) {
     reports {
@@ -50,7 +53,25 @@ tasks.withType(Pmd) {
 }
 
 test {
-    exclude 'org/fundacionjala/pivotal/**'
+    useTestNG()
+
+    options {
+        suites 'src/test/resources/suite1.xml'
+        includeGroups
+        listeners << 'org.fundacionjala.pivotal.testng.SuiteListener'
+        listeners << 'org.fundacionjala.pivotal.testng.TestListener'
+    }
+
+    systemProperty 'authenticationBaseURL', authenticationBaseURL
+    systemProperty 'user', user
+    systemProperty 'password', password
+    systemProperty 'authenticationBaseURI', authenticationBaseURI
+    systemProperty 'token', token
+    systemProperty 'timeout', timeout
+    systemProperty 'browser', browser
+
+    scanForTestClasses false
+
     testLogging {
         events "PASSED", "STARTED", "FAILED", "SKIPPED"
     }
