@@ -35,6 +35,18 @@ public class ProjectManagement extends AbstractBasePage {
     private  WebElement deleteConfirmationPopUp;
 
 
+    @FindBy(css = "a[data-aid='navTab-settings'] span")
+    private WebElement navBarSettings;
+
+    @FindBy(css = "a[data-aid='navTab-stories']")
+    private WebElement staorytab;
+
+    @FindBy(css = "project_name")
+    private WebElement projectName;
+
+    @FindBy(css = "save_bar__submit")
+    private WebElement save;
+
     /**
      * this project obtain project name.
      *
@@ -43,6 +55,7 @@ public class ProjectManagement extends AbstractBasePage {
     public String getProjectName() {
         return CommonActions.getText(projectNameSpan);
     }
+
 
     /**
      * this project obtain project name in the settings page.

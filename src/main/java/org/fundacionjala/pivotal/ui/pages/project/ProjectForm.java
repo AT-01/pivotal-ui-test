@@ -1,19 +1,18 @@
 package org.fundacionjala.pivotal.ui.pages.project;
 
+import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
+import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
-import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
-
-import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.ACCOUNT;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_NAME;
+import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.ACCOUNT;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_PRIVACY;
 
 /**
