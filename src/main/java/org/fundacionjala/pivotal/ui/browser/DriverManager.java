@@ -1,11 +1,10 @@
 package org.fundacionjala.pivotal.ui.browser;
 
-import java.util.concurrent.TimeUnit;
-
+import org.fundacionjala.pivotal.utils.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.fundacionjala.pivotal.utils.Environment;
+import java.util.concurrent.TimeUnit;
 
 /**
  * this class is to provide basic methods for manage the Selenium driver,
@@ -14,6 +13,7 @@ import org.fundacionjala.pivotal.utils.Environment;
 public final class DriverManager {
 
     private static final Environment ENVIRONMENT = Environment.getInstance();
+    public static final int WAIT_TIME_OUT = 30;
 
     private static DriverManager instance;
 
@@ -30,9 +30,9 @@ public final class DriverManager {
         final Browser browser = Browser.valueOf(ENVIRONMENT.getBrowser().toUpperCase());
         driver = DriverFactory.getDriver(browser).initDriver();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        driver.get(baseUrl);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Environment.getInstance().getTimeout());
+        wait = new WebDriverWait(driver, WAIT_TIME_OUT);
+        driver.get(baseUrl);
     }
 
     /**

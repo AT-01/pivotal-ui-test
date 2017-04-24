@@ -1,9 +1,10 @@
 package org.fundacionjala.pivotal.ui.pages;
 
+import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
+import static org.fundacionjala.pivotal.utils.Environment.getInstance;
 
 /**
  * this Class is for login on PivotalTracker.
@@ -70,5 +71,14 @@ public class SignInForm extends AbstractBasePage {
         signInForm.clickNextButton();
         signInForm.setPasswordTextField(password);
         return signInForm.clickSigninButton();
+    }
+
+    /**
+     * This method will be used to login to Pivotal using env properties.
+     *
+     * @return Dashboard.
+     */
+    public static Dashboard loginAsPrimaryUser() {
+        return loginAs(getInstance().getPrimaryUser(), getInstance().getPrimaryPassword());
     }
 }

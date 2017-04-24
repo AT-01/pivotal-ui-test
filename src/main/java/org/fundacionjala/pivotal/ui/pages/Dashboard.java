@@ -16,7 +16,7 @@ import java.util.List;
  * Dashboard page the PivotalTracker.
  */
 public class Dashboard extends AbstractBasePage {
-    @FindBy(id = "create_new_project_button")
+    @FindBy(css = ".button.button--action")
     private WebElement createProjectButton;
 
     @FindBy(xpath = "//span[text()='Workspaces']")
@@ -67,7 +67,8 @@ public class Dashboard extends AbstractBasePage {
      * @return StoryDashboard object.
      */
     public StoryDashBoard projectsList(final String projectName) {
-        List<WebElement> projects = projectsList.findElements(By.className("project_title"));
+        final By selector = By.cssSelector("a[data-aid='project-name']");
+        List<WebElement> projects = DriverManager.getInstance().getDriver().findElements(selector);
         for (WebElement project : projects) {
             if (projectName.equals(project.getText())) {
                 CommonActions.clickElement(project);

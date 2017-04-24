@@ -102,11 +102,6 @@ public class WorkSpacesTests {
      */
     @AfterSuite
     public void removeDriver() {
-        /*try {
-            Thread.sleep(3000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }*/
         DriverManager.getInstance().getDriver().close();
     }
 
