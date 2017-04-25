@@ -19,6 +19,9 @@ public final class Constants {
 
     public static final String SAVED_MESSAGE = "Changes saved.";
 
+    public static final String DELETE_MESSAGE = " was successfully deleted.";
+
+
     /**
      * This Constructor to default.
      */

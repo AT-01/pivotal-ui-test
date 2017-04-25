@@ -1,12 +1,12 @@
 package org.fundacionjala.pivotal.ui.pages;
 
-import java.util.List;
-
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 /**
  * This class have the actions on the Story Board.
@@ -19,6 +19,10 @@ public class StoryDashBoard extends AbstractBasePage {
     private static final String SAVE_BUTTON = "button[class=\"autosaves std save\"]";
     private static final String DELETE_BUTTON = "a[class=\"autosaves undraggable delete\"]";
     public static final String ALL_DELETE_BUTTONS = "//li[contains(@class,'task draggable droppable task')]";
+
+    @FindBy(css = ".raw_context_name.public")
+    private WebElement nameOfProject;
+
     @FindBy(name = "task[description]")
     private WebElement taskTextField;
 
@@ -43,7 +47,7 @@ public class StoryDashBoard extends AbstractBasePage {
     public void clickForStoryDeploy(final String storyName) {
         CommonActions.clickElement(driver.findElement(
                 By.cssSelector("header[class=\"preview\"] >a[title=" + storyName + "] "
-                + "+ [class=\"expander undraggable")));
+                        + "+ [class=\"expander undraggable")));
     }
 
     /**
