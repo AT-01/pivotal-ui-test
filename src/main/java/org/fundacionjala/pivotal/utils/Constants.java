@@ -13,6 +13,8 @@ public final class Constants {
 
     public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
 
+    public static final String STORIES_ENDPOINT = "/projects/%s/stories";
+
     public static final String WORKSPACE_ID = "id";
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";

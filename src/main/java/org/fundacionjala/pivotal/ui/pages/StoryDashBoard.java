@@ -1,10 +1,10 @@
 package org.fundacionjala.pivotal.ui.pages;
 
-import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -14,19 +14,18 @@ import java.util.List;
 public class StoryDashBoard extends AbstractBasePage {
 
 
-    private static final String TASK_TEXT_AREA = "//textarea[@class='editor tracker_markup std']";
-    private static final String EDIT_BUTTON = "a[class=\"autosaves undraggable edit\"]";
-    private static final String SAVE_BUTTON = "button[class=\"autosaves std save\"]";
-    private static final String DELETE_BUTTON = "a[class=\"autosaves undraggable delete\"]";
+    private static final String TASK_TEXT_AREA = "textarea[data-aid='editor']";
+    private static final String SAVE_BUTTON = "button[data-aid='saveTaskButton']";
+    private static final String DELETE_BUTTON = "span[data-aid='delete']";
     public static final String ALL_DELETE_BUTTONS = "//li[contains(@class,'task draggable droppable task')]";
 
     @FindBy(css = ".raw_context_name.public")
     private WebElement nameOfProject;
 
-    @FindBy(name = "task[description]")
+    @FindBy(css = "textarea[placeholder='Add a task']")
     private WebElement taskTextField;
 
-    @FindBy(css = "button.autosaves.std.add")
+    @FindBy(css = "button[data-aid='addTaskButton']")
     private WebElement addButton;
 
     @FindBy(css = "section[class=\"tasks full\"]")
@@ -61,14 +60,28 @@ public class StoryDashBoard extends AbstractBasePage {
     }
 
     /**
+     * @param taskText The task text.
+     * @return The task text.
+     */
+    public WebElement getTaskElementByText(final String taskText) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(String.format("//div[text()='%s']", taskText))));
+    }
+
+    /**
      * Verifies If the Task exist.
      *
      * @param taskText String of the task.
      * @return boolean  element exist
      */
     public boolean taskTextExist(final String taskText) {
-        List<WebElement> taskCreated = taskList.findElements(By.cssSelector("div.description.tracker_markup"));
-        return taskCreated.stream().anyMatch(x -> x.getText().equals(taskText));
+        try {
+            List<WebElement> taskCreated = taskList.findElements(
+                    By.cssSelector("div.TaskShow__description___3R_4oT7G"));
+            return taskCreated.stream().anyMatch(x -> x.getText().equals(taskText));
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
@@ -91,37 +104,23 @@ public class StoryDashBoard extends AbstractBasePage {
      * @param webElement   Web element whit in the task
      * @param textToUpdate String the new task to update.
      */
-    private void updateTheTask(final WebElement webElement, final String textToUpdate) {
+    public void updateTheTask(final WebElement webElement, final String textToUpdate) {
         CommonActions.clickElement(webElement);
-        CommonActions.clickElement(webElement
-                .findElement(By.cssSelector(EDIT_BUTTON)));
-        CommonActions.sendKeys(webElement
-                .findElement(By.xpath(TASK_TEXT_AREA)), textToUpdate);
-        CommonActions.clickElement(webElement.findElement(By.cssSelector(SAVE_BUTTON)));
+
+        WebElement textArea = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(TASK_TEXT_AREA)));
+        CommonActions.sendKeys(textArea, textToUpdate);
+
+        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(SAVE_BUTTON)));
+        CommonActions.clickElement(saveButton);
     }
 
     /**
-     * this method finds the task and press the delete button.
-     *
-     * @param taskCreated task created.
+     * @param taskName The task name
      */
-    public void deleteTask(final String taskCreated) {
-        String task = Mapper.mapEndpoint(taskCreated);
-        List<WebElement> tasksElements = taskIndex
-                .findElements(By.xpath(ALL_DELETE_BUTTONS));
-        tasksElements.stream().filter(webElement -> task.equals(webElement.getText()))
-                .forEach(this::deleteTask);
-    }
+    public void deleteTask(final String taskName) {
+        By locator = By.xpath(String.format("//div[text()='%s']/parent::div/descendant::span", taskName));
 
-    /**
-     * Delete The task requested.
-     *
-     * @param webElement Web Element whit in the task.
-     */
-    private void deleteTask(final WebElement webElement) {
-        CommonActions.clickElement(webElement);
-        CommonActions.clickElement(webElement
-                .findElement(By.cssSelector(DELETE_BUTTON)));
+        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        CommonActions.clickElement(deleteButton);
     }
-
 }
