@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.ui.pages;
 
 import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -79,7 +80,7 @@ public class StoryDashBoard extends AbstractBasePage {
             List<WebElement> taskCreated = taskList.findElements(
                     By.cssSelector("div.TaskShow__description___3R_4oT7G"));
             return taskCreated.stream().anyMatch(x -> x.getText().equals(taskText));
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
