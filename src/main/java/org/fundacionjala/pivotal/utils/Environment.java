@@ -250,31 +250,39 @@ public final class Environment {
     }
 
     /**
-     * Get the project's name
+     * Get the project's name.
      *
      * @return String remote project's name
      */
-    public String getProjectName() { return getEnv(PROJECT_NAME);}
+    public String getProjectName() {
+        return getEnv(PROJECT_NAME);
+    }
 
     /**
-     * Get the account's name
+     * Get the account's name.
      *
      * @return String remote account's name
      */
-    public String getAccountName() { return getEnv(ACCOUNT_NAME);}
+    public String getAccountName() {
+        return getEnv(ACCOUNT_NAME);
+    }
 
     /**
-     * Get the account's name
+     * Get the account's name.
      *
      * @return String remote account's name
      */
-    public String getProjectNewName() { return getEnv(PROJECT_NEW_NAME);}
+    public String getProjectNewName() {
+        return getEnv(PROJECT_NEW_NAME);
+    }
 
     /**
-     * Get the account's name
+     * Get the account's name.
      *
      * @return String remote account's name
      */
-    public String getDescriptionName() { return getEnv(DESCRIPTION_NAME);}
+    public String getDescriptionName() {
+        return getEnv(DESCRIPTION_NAME);
+    }
 
 }
