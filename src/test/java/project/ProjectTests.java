@@ -13,16 +13,26 @@ import org.testng.annotations.BeforeClass;
  * Created by Alejandro Alcocer on 4/10/2017.
  */
 public class ProjectTests {
+    static final int PRIORITY_ONE = 1;
+    static final int PRIORITY_TWO = 2;
+    static final int PRIORITY_THREE = 3;
+
+    /**
+     * login to pivotal tracker.
+     */
     @BeforeClass
-    public void Login() {
+    public void login() {
         SignInForm signInForm = new SignInForm();
         String user = Environment.getInstance().getPrimaryUser();
         String password = Environment.getInstance().getPrimaryPassword();
         signInForm.loginAs(user, password);
     }
 
-    @org.testng.annotations.Test(priority = 1)
-    public void CreateProject() {
+    /**
+     * creates a new project.
+     */
+    @org.testng.annotations.Test(priority = PRIORITY_ONE)
+    public void createProject() {
         //when
         String projectName = Environment.getInstance().getProjectName();
         String accountName = Environment.getInstance().getAccountName();
@@ -38,9 +48,11 @@ public class ProjectTests {
         Assert.assertEquals(projectName, projectNameOnPivotal);
 
     }
-
-    @org.testng.annotations.Test(priority = 2)
-    public void EditProject() {
+    /**
+     * edit the project.
+     */
+    @org.testng.annotations.Test(priority = PRIORITY_TWO)
+    public void editProject() {
         //when
         String newProjectName = Environment.getInstance().getProjectNewName();
         String newDescription = Environment.getInstance().getDescriptionName();
@@ -52,9 +64,11 @@ public class ProjectTests {
         //then
         Assert.assertEquals(newProjectName, projectManagement.getNewProjectName());
     }
-
-    @org.testng.annotations.Test(priority = 3)
-    public void DeleteProject() {
+    /**
+     * delete the project.
+     */
+    @org.testng.annotations.Test(priority = PRIORITY_THREE)
+    public void deleteProject() {
         ProjectManagement projectManagement = new ProjectManagement();
         projectManagement.scrollDown();
         projectManagement.clickDelete();

@@ -82,39 +82,65 @@ public class ProjectManagement extends AbstractBasePage {
         return projectId;
     }
 
+    /**
+     * it goes to the pivotal tracker page.
+     * @param accountToSet is used.
+     */
     public void goToSettings(final String accountToSet) {
-        driver.navigate().to("https://www.pivotaltracker.com/projects/"+accountToSet+"/settings");
+        driver.navigate().to("https://www.pivotaltracker.com/projects/" + accountToSet + "/settings");
     }
 
+    /**
+     * set a new project name.
+     * @param newProjectName is returned.
+     */
     public void setNewProjectName(final String newProjectName) {
         CommonActions.clearTextField(projectNameTextField);
         CommonActions.sendKeys(projectNameTextField, newProjectName);
     }
 
+    /**
+     * set the description for the new project.
+     * @param newDescription is returned.
+     */
     public void setNewProjectDescription(final String newDescription) {
         CommonActions.clearTextField(projectDescription);
         CommonActions.sendKeys(projectDescription, newDescription);
     }
 
+    /**
+     * it clicks on save button.
+     */
     public void clickSave() {
         CommonActions.clickElement(saveButton);
     }
 
-    public void clickDelete(){
+    /**
+     * it click on delte button.
+     */
+    public void clickDelete()    {
         CommonActions.clickElement(deleteLink);
     }
 
-    public void clickDeleteConfirmation(){
+    /**
+     * click on confirm for delete the project.
+     */
+    public void clickDeleteConfirmation() {
         CommonActions.clickElement(confirmDelete);
     }
 
-    public void scrollDown(){
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-
+    /**
+     * it scrolls down the page.
+     */
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView()", deleteLink);
-
     }
 
+    /**
+     * it confirms that the message of project delete is displayed.
+     * @return a boolean.
+     */
     public boolean deleteMessageConfirmation() {
         try {
             DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(deleteConfirmationPopUp));

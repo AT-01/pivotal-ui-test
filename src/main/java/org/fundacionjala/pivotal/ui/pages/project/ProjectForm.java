@@ -20,19 +20,19 @@ import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJ
  */
 
 public class ProjectForm extends AbstractBasePage {
-    @FindBy(css="button[class=\"button button--action\"]")
+    @FindBy(css = "button[class=\"button button--action\"]")
     private WebElement createProjectButton;
-    @FindBy(css="input[type=\"text\"]")
+    @FindBy(css = "input[type=\"text\"]")
     private WebElement projectNameTextField;
-    @FindBy(css="div[class=\"tc-account-selector\"]")
-    private WebElement dropdownAccountButton;//this one may not belong here
-    @FindBy(css="span[class=\"tc-account-selector__create-account-text\"]")
+    @FindBy(css = "div[class=\"tc-account-selector\"]")
+    private WebElement dropdownAccountButton;
+    @FindBy(css = "span[class=\"tc-account-selector__create-account-text\"]")
     private WebElement createAccountButtonOptionDropDownList;
-    @FindBy(css="input[class=\"tc-account-creator__name\"]")
+    @FindBy(css = "input[class=\"tc-account-creator__name\"]")
     private WebElement newAccountProjectTextField;
-    @FindBy(css="input[value=\"public\"]")
+    @FindBy(css = "input[value=\"public\"]")
     private WebElement radioButtonPublic;
-    @FindBy(css="button[type=\"submit\"]")
+    @FindBy(css = "button[type=\"submit\"]")
     private WebElement saveNewProjectButton;
 
     /**
@@ -72,6 +72,11 @@ public class ProjectForm extends AbstractBasePage {
         CommonActions.clickElement(createProjectButton);
         return new ProjectManagement();
     }
+    /**
+     * This method makes click in create button.
+     *
+     * @return a ProjectManagement.
+     */
     public ProjectManagement clickCreateButton() {
         CommonActions.clickElement(saveNewProjectButton);
         return new ProjectManagement();

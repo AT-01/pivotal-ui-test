@@ -61,5 +61,7 @@ public final class DriverManager {
      *
      * @return WebDriverWait.
      */
-    public WebDriverWait getWait() { return wait; }
+    public WebDriverWait getWait() {
+        return wait;
+    }
 }
