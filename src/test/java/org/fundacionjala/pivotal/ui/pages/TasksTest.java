@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.ACCOUNT;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_NAME;
 import static org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting.PROJECT_PRIVACY;
@@ -49,7 +48,7 @@ public class TasksTest {
         newProject.put(PROJECT_PRIVACY, publicProject);
 
         // Login
-        dashboard = new Dashboard(); //SignInForm.loginAsPrimaryUser();
+        dashboard = new Dashboard();
 
     }
 
