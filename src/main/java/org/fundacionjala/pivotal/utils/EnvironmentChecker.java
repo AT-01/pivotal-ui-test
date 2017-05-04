@@ -8,11 +8,15 @@ import java.util.logging.Logger;
  * This class verified in what type of
  * environment the framework is running.
  */
-public class EnvironmentChecker {
+public final class EnvironmentChecker {
 
     private static EnvironmentChecker instance = null;
     private static String osName = "";
-    private final static Logger LOG = Logger.getLogger(EnvironmentChecker.class.getName());
+    private final Logger log = Logger.getLogger(EnvironmentChecker.class.getName());
+
+    /**
+     * Private Constructor.
+     */
     private EnvironmentChecker() {
         osChecker();
     }
@@ -30,26 +34,26 @@ public class EnvironmentChecker {
     }
 
     /***
-     * This method will verify the environment OS
+     * This method will verify the environment OS.
      */
     private void osChecker() {
         if (SystemUtils.IS_OS_WINDOWS) {
-            LOG.info("Environment Detected: Windows based");
+            log.info("Environment Detected: Windows based");
             osName = "Windows";
         } else if (SystemUtils.IS_OS_LINUX) {
-            LOG.info("Environment Detected: LINUX Based");
+            log.info("Environment Detected: LINUX Based");
             osName = "Linux";
-        } else if(SystemUtils.IS_OS_UNIX) {
-            LOG.info("Environment Detected: UNIX Based");
+        } else if (SystemUtils.IS_OS_UNIX) {
+            log.info("Environment Detected: UNIX Based");
             osName = "Unix";
         } else {
-            LOG.info("Environment not supported");
-            System.exit(1);
+            log.info("Environment not supported");
+            throw new RuntimeException("Environment not supported");
         }
     }
 
     /***
-     * This method will return the OS name
+     * This method will return the OS name.
      *
      * @return the OS name
      */

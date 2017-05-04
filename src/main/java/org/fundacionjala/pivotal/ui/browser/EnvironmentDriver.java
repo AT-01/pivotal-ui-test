@@ -5,5 +5,10 @@ package org.fundacionjala.pivotal.ui.browser;
  */
 public interface EnvironmentDriver extends Driver {
 
+    /**
+     * This method return driver path.
+     *
+     * @return driver path
+     */
     String getWebDriverPath();
 }
