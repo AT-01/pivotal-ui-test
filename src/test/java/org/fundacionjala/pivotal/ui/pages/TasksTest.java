@@ -25,7 +25,6 @@ import static org.testng.Assert.assertEquals;
  * @author bsronald on 5/4/17.
  */
 public class TasksTest {
-    private static final Logger LOGGER = Logger.getLogger(StoryDashBoard.class.getName());
     private Dashboard dashboard;
     private Map<ProjectFormSetting, String> newProject;
     private String testeandOsd;
@@ -37,7 +36,6 @@ public class TasksTest {
      */
     @BeforeClass
     public void setupSuite() {
-        LOGGER.info("inside setup");
 
         // set variables
         testeandOsd = "TESTEANDOsd";
@@ -70,7 +68,6 @@ public class TasksTest {
         projectForm.setConfiguration(newProject);
         ProjectManagement projectManagement = projectForm.clickCreateProjectButton();
         final String projectID = ApiUtils.getProjectID(testeandOsd);
-        LOGGER.info(" " + projectID);
 
         // When
         assertEquals(projectManagement.getProjectName(), testeandOsd);
