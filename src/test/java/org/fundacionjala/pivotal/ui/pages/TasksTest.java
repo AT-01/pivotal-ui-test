@@ -66,7 +66,6 @@ public class TasksTest {
         ProjectForm projectForm = dashboard.clickCreateProjectButton();
         projectForm.setConfiguration(newProject);
         ProjectManagement projectManagement = projectForm.clickCreateProjectButton();
-        final String projectID = ApiUtils.getProjectID(testeandOsd);
 
         // When
         assertEquals(projectManagement.getProjectName(), testeandOsd);
