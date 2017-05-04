@@ -2,14 +2,14 @@ package org.fundacionjala.pivotal.ui.pages;
 
 import org.fundacionjala.pivotal.api.ApiUtils;
 import org.fundacionjala.pivotal.ui.pages.common.CommonMethods;
+import org.fundacionjala.pivotal.ui.pages.common.CommonNavigator;
+import org.fundacionjala.pivotal.ui.pages.common.UICommonMethods;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectForm;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectManagement;
 import org.fundacionjala.pivotal.ui.pages.project.Story;
 import org.fundacionjala.pivotal.utils.Environment;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,8 +69,17 @@ public class StoryDashBoardTest {
     /**
      * This after suit will close the app.
      */
-    @AfterSuite
-    public void logoutPivotal() {
+    @AfterClass
+    public void navigateToDashBoard() {
         CommonMethods.deleteAllProjects();
+        CommonNavigator.goToDashboard();
+    }
+
+    /**
+     * Tear down.
+     */
+    @AfterSuite
+    public void tearDown() {
+        UICommonMethods.closeBrowser();
     }
 }
