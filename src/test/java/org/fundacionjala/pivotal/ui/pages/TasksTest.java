@@ -2,14 +2,13 @@ package org.fundacionjala.pivotal.ui.pages;
 import org.fundacionjala.pivotal.api.ApiUtils;
 import org.fundacionjala.pivotal.ui.pages.common.CommonMethods;
 import org.fundacionjala.pivotal.ui.pages.common.CommonNavigator;
-import org.fundacionjala.pivotal.ui.pages.common.UICommonMethods;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectForm;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectFormSetting;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectManagement;
 import org.fundacionjala.pivotal.ui.pages.project.Story;
 import org.fundacionjala.pivotal.utils.Environment;
-import org.testng.annotations.*;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.HashMap;
@@ -119,12 +118,4 @@ public class TasksTest {
         CommonMethods.deleteAllProjects();
         CommonNavigator.goToDashboard();
     }
-
-//    /**
-//     * This method is executed after all suite.
-//     */
-//    @AfterClass
-//    public void tearDown() {
-//        UICommonMethods.closeBrowser();
-//    }
 }
