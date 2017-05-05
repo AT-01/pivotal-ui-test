@@ -1,10 +1,9 @@
 package org.fundacionjala.pivotal.ui.pages;
 
-import org.fundacionjala.pivotal.api.ApiUtils;
-import org.fundacionjala.pivotal.api.RequestManager;
+import org.fundacionjala.pivotal.api.ProjectsManager;
+import org.fundacionjala.pivotal.api.StoriesManager;
 import org.fundacionjala.pivotal.ui.pages.common.CommonMethods;
 import org.fundacionjala.pivotal.ui.pages.common.CommonNavigator;
-import org.fundacionjala.pivotal.utils.Constants;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -31,15 +30,8 @@ public class StoryTasksTest {
     public void beforeSuite() {
         SignInForm.loginAsPrimaryUser();
 
-        RequestManager.post(
-                Constants.PROJECTS_ENDPOINT,
-                String.format(
-                        "{\"name\":\"%s\",\"project_type\":\"private\",\"new_account_name\":\"a003\"}",
-                        PROJECT_NAME));
-        final String projectId = ApiUtils.getProjectID(PROJECT_NAME);
-        RequestManager.post(
-                String.format(Constants.STORIES_ENDPOINT, projectId),
-                String.format("{\"name\":\"%s\"}", STORY_NAME));
+        ProjectsManager.post(PROJECT_NAME);
+        StoriesManager.post(STORY_NAME, STORY_NAME);
     }
 
     /**
