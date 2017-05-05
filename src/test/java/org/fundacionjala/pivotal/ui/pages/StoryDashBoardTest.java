@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.ui.pages;
 
-import org.fundacionjala.pivotal.api.ApiUtils;
+
 import org.fundacionjala.pivotal.ui.pages.common.CommonMethods;
 import org.fundacionjala.pivotal.ui.pages.common.CommonNavigator;
 import org.fundacionjala.pivotal.ui.pages.common.UICommonMethods;
@@ -55,8 +55,6 @@ public class StoryDashBoardTest {
 
         projectForm.setConfiguration(newPro);
         ProjectManagement projectManagement = projectForm.clickCreateProjectButton();
-        String projectID = ApiUtils.getProjectID(testeandOsd);
-        LOGGER.info(" " + projectID);
         assertEquals(testeandOsd, projectManagement.getProjectName());
         Story story = new Story();
         story.clickAddStoryButton();

@@ -1,12 +1,15 @@
 package org.fundacionjala.pivotal.ui.pages.account;
 
-import java.util.List;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
+import org.fundacionjala.pivotal.ui.browser.DriverManager;
 import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
 import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 /**
  * This is the Account page class.
@@ -120,4 +123,21 @@ public class Account extends AbstractBasePage {
         return manageAccountButtonList;
     }
 
+    /**
+     * This method will verify if an account exists.
+     *
+     * @param accountName account to validate.
+     * @return true if so and false if not.
+     */
+    public boolean isAccountDisplayed(final String accountName) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(createAccountButton));
+        boolean answer = true;
+        try {
+            final By xpath = By.xpath(".//*/div[@class='name' and text()='" + accountName + "']");
+            DriverManager.getInstance().getDriver().findElement(xpath);
+        } catch (NoSuchElementException e) {
+            answer = false;
+        }
+        return answer;
+    }
 }
