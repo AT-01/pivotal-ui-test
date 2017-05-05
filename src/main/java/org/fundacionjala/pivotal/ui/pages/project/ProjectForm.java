@@ -37,7 +37,7 @@ public class ProjectForm extends AbstractBasePage {
     @FindBy(css = "input.tc-account-creator__name")
     private WebElement newAccountProjectTextField;
 
-    @FindBy(css="button[type=\"submit\"]")
+    @FindBy(css = "button[type=\"submit\"]")
     private WebElement saveNewProjectButton;
 
     /**
@@ -121,7 +121,7 @@ public class ProjectForm extends AbstractBasePage {
     }
 
     /**
-     * click on create button
+     * click on create button.
      * @return new project managment
      */
     public ProjectManagement clickCreateButton() {

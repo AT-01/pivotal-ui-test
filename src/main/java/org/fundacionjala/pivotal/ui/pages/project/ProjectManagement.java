@@ -115,16 +115,16 @@ public class ProjectManagement extends AbstractBasePage {
     }
 
     /**
-     * go to setting for the project
-     * @param accountToSet
+     * go to setting for the project.
+     * @param accountToSet String parameter
      */
     public void goToSettings(final String accountToSet) {
-        driver.navigate().to("https://www.pivotaltracker.com/projects/"+accountToSet+"/settings");
+        driver.navigate().to("https://www.pivotaltracker.com/projects/" + accountToSet + "/settings");
     }
 
     /**
-     * set a new project name
-     * @param newProjectName
+     * set a new project name.
+     * @param newProjectName String parameter
      */
     public void setNewProjectName(final String newProjectName) {
         CommonActions.clearTextField(projectNameTextField);
@@ -132,8 +132,8 @@ public class ProjectManagement extends AbstractBasePage {
     }
 
     /**
-     * set a new description for the project
-     * @param newDescription
+     * set a new description for the project.
+     * @param newDescription String parameter
      */
     public void setNewProjectDescription(final String newDescription) {
         CommonActions.clearTextField(projectDescription);
@@ -141,38 +141,38 @@ public class ProjectManagement extends AbstractBasePage {
     }
 
     /**
-     * click on save the project
+     * click on save the project.
      */
     public void clickSave() {
         CommonActions.clickElement(saveButton);
     }
 
     /**
-     * click on delete the project
+     * click on delete the project.
      */
-    public void clickDelete(){
+    public void clickDelete() {
         CommonActions.clickElement(deleteLink);
     }
 
     /**
-     * click on confirm
+     * click on confirm.
      */
-    public void clickDeleteConfirmation(){
+    public void clickDeleteConfirmation() {
         CommonActions.clickElement(confirmDelete);
     }
 
     /**
-     * scroll down the page
+     * scroll down the page.
      */
-    public void scrollDown(){
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
 
         jse.executeScript("arguments[0].scrollIntoView()", deleteLink);
 
     }
 
     /**
-     * verify the confirmation that the project has been deleted
+     * verify the confirmation that the project has been deleted.
      * @return a boolean
      */
     public boolean deleteMessageConfirmation() {
