@@ -21,6 +21,7 @@ public final class CommonNavigator {
      */
     public static void goToDashboard() {
         final String url = String.format("%s/%s", Environment.getInstance().getBaseUrl(), DASHBOARD);
+        DriverManager.getInstance().getDriver().navigate().refresh();
         DriverManager.getInstance().getDriver().navigate().to(url);
     }
 }

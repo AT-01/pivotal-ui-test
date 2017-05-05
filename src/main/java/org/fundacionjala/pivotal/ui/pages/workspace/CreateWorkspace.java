@@ -1,23 +1,23 @@
 package org.fundacionjala.pivotal.ui.pages.workspace;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
 import org.fundacionjala.pivotal.ui.pages.Steps;
+import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class represent the create a work space.
  */
 public class CreateWorkspace extends AbstractBasePage {
 
-    @FindBy(className = "tc_form_input")
+    @FindBy(css = "label ~ input.tc-form__input")
     private WebElement workspaceNameTextField;
 
-    @FindBy(css = ".tc_button.tc_button_submit")
+    @FindBy(css = "button[type='submit']")
     private WebElement createWorkspaceLink;
 
     @FindBy(css = ".tc_button.tc_button_cancel")
@@ -35,8 +35,7 @@ public class CreateWorkspace extends AbstractBasePage {
      * @return a object Workspaces page.
      */
     public Workspace clickCreateWorkspaceLink() {
-        wait.until(ExpectedConditions.visibilityOf(getCreateWorkspaceContainer));
-        createWorkspaceLink.click();
+        CommonActions.clickElement(createWorkspaceLink);
         return new Workspace();
     }
 

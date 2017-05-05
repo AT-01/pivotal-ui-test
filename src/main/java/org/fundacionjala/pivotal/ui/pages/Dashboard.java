@@ -4,6 +4,7 @@ import org.fundacionjala.pivotal.ui.browser.DriverManager;
 import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectForm;
 import org.fundacionjala.pivotal.ui.pages.workspace.CreateWorkspace;
+import org.fundacionjala.pivotal.ui.pages.workspace.SettingWorkspace;
 import org.fundacionjala.pivotal.ui.pages.workspace.Workspace;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,13 @@ public class Dashboard extends AbstractBasePage {
     @FindBy(css = ".button.button--action")
     private WebElement createProjectButton;
 
-    @FindBy(id = "create_new_workspace_button")
+    @FindBy(xpath = "//span[text()='Workspaces']")
+    private WebElement workspaceTab;
+
+    @FindBy(id = "my_projects_list")
+    private WebElement projectsList;
+
+    @FindBy(css = "button[aria-label='create-workspace']")
     private WebElement createWorkspaceLink;
 
     @FindBy(css = "li[id=\"notice\"]")
@@ -33,6 +40,14 @@ public class Dashboard extends AbstractBasePage {
         CommonActions.clickElement(createProjectButton);
         return new ProjectForm();
     }
+
+    /**
+     * This method a clickElement "Workspaces" tab.
+     */
+    public void clickInWorkSpacesTab() {
+        CommonActions.clickElement(workspaceTab);
+    }
+
 
     /**
      * This method verify if project exist in the dashboard.
@@ -68,7 +83,7 @@ public class Dashboard extends AbstractBasePage {
      * @return a object create workspace page.
      */
     public CreateWorkspace clickCreateWorkspaceLink() {
-        createWorkspaceLink.click();
+        CommonActions.clickElement(createWorkspaceLink);
         return new CreateWorkspace();
     }
 
@@ -108,5 +123,21 @@ public class Dashboard extends AbstractBasePage {
      */
     public void refreshPage() {
         driver.navigate().refresh();
+    }
+
+    /**
+     * This method click in config icon of Workspace.
+     * @param nameProject is a string with name of workspace
+     * @return a SettingWorkspace page object.
+     */
+    public SettingWorkspace clickConfigIconWorkSpace(final String nameProject) {
+        final String selector = String.format("//a[text()=('%s')]/following-sibling::span/a", nameProject);
+        By bLocator = new By.ByXPath(selector);
+        WebElement wConfigBtn = DriverManager
+                .getInstance()
+                .getDriver()
+                .findElement(bLocator);
+        CommonActions.clickElement(wConfigBtn);
+        return new SettingWorkspace();
     }
 }

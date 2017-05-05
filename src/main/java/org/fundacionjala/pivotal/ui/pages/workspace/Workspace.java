@@ -1,10 +1,5 @@
 package org.fundacionjala.pivotal.ui.pages.workspace;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fundacionjala.pivotal.ui.pages.AbstractBasePage;
@@ -12,6 +7,11 @@ import org.fundacionjala.pivotal.ui.pages.Dashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.openqa.selenium.By.cssSelector;
 
@@ -112,6 +112,14 @@ public class Workspace extends AbstractBasePage {
         Map<WorkspaceSteps, Object> strategyMapWorkspaceFieldsCreate = new HashMap<>();
         strategyMapWorkspaceFieldsCreate.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText());
         return strategyMapWorkspaceFieldsCreate;
+    }
+
+    /**
+     * This method will retrieve a name of Workspaces.
+     * @return an String with name of Workspaces
+     */
+    public String getWorkspaceNameText() {
+        return toolBarWorkspace.getWorkspaceNameText();
     }
 
     /**

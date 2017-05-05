@@ -57,5 +57,4 @@ public final class CommonActions {
         DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
     }
-
 }

@@ -12,7 +12,7 @@ import org.fundacionjala.pivotal.ui.pages.common.CommonActions;
  * This class doing the manage the accounts.
  */
 public class ManageAccount extends AbstractBasePage {
-    @FindBy(className = "account_name")
+    @FindBy(css = ".account_name>span")
     private WebElement accountNameLabel;
 
     /**
@@ -33,4 +33,14 @@ public class ManageAccount extends AbstractBasePage {
     public void waitPage() {
         wait.until(ExpectedConditions.visibilityOf(accountNameLabel));
     }
+
+    /**
+     * This method will get the account name in manage account.
+     *
+     * @return account name.
+     */
+    public String getAccountName() {
+        return CommonActions.getText(accountNameLabel);
+    }
+
 }

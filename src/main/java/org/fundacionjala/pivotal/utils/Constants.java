@@ -19,6 +19,13 @@ public final class Constants {
 
     public static final String SAVED_MESSAGE = "Changes saved.";
 
+    public static final String DELETE_MESSAGE = " was successfully deleted.";
+
+    public static final String WINDOWS_OS = "Windows";
+
+    public static final String LINUX_OS = "Linux";
+
+
     /**
      * This Constructor to default.
      */
