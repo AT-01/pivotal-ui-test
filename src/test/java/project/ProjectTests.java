@@ -5,7 +5,8 @@ import org.fundacionjala.pivotal.ui.pages.project.ProjectForm;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectManagement;
 import org.fundacionjala.pivotal.ui.pages.project.ProjectPrivacy;
 import org.fundacionjala.pivotal.utils.Environment;
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 
 import org.testng.annotations.BeforeClass;
 
@@ -16,6 +17,10 @@ public class ProjectTests {
     static final int PRIORITY_ONE = 1;
     static final int PRIORITY_TWO = 2;
     static final int PRIORITY_THREE = 3;
+    static final String PROJEC_NAME = "";
+    static final String ACCOUNT_NAME = "";
+    static final String NEW_PROJECT_NAME = "";
+    static final String NEW_DESCRIPTION_NAME = "";
 
     /**
      * login to pivotal tracker.
@@ -34,18 +39,16 @@ public class ProjectTests {
     @org.testng.annotations.Test(priority = PRIORITY_ONE)
     public void createProject() {
         //when
-        String projectName = Environment.getInstance().getProjectName();
-        String accountName = Environment.getInstance().getAccountName();
         ProjectForm projectForm = new ProjectForm();
         ProjectManagement projectManagement = new ProjectManagement();
         projectForm.clickCreateProjectButton();
-        projectForm.setProjectNameTextField(projectName);
-        projectForm.setAccountDropDownList(accountName);
+        projectForm.setProjectNameTextField(PROJEC_NAME);
+        projectForm.setAccountDropDownList(ACCOUNT_NAME);
         projectForm.selectedProjectPrivacy(ProjectPrivacy.PUBLIC);
         projectForm.clickCreateButton();
         String projectNameOnPivotal = projectManagement.getProjectName();
         //then
-        Assert.assertEquals(projectName, projectNameOnPivotal);
+        assertEquals(PROJEC_NAME, projectNameOnPivotal);
 
     }
     /**
@@ -54,15 +57,13 @@ public class ProjectTests {
     @org.testng.annotations.Test(priority = PRIORITY_TWO)
     public void editProject() {
         //when
-        String newProjectName = Environment.getInstance().getProjectNewName();
-        String newDescription = Environment.getInstance().getDescriptionName();
         ProjectManagement projectManagement = new ProjectManagement();
         projectManagement.goToSettings(projectManagement.getProjectId());
-        projectManagement.setNewProjectName(newProjectName);
-        projectManagement.setNewProjectDescription(newDescription);
+        projectManagement.setNewProjectName(NEW_PROJECT_NAME);
+        projectManagement.setNewProjectDescription(NEW_DESCRIPTION_NAME);
         projectManagement.clickSave();
         //then
-        Assert.assertEquals(newProjectName, projectManagement.getNewProjectName());
+        assertEquals(NEW_PROJECT_NAME, projectManagement.getNewProjectName());
     }
     /**
      * delete the project.
@@ -73,7 +74,7 @@ public class ProjectTests {
         projectManagement.scrollDown();
         projectManagement.clickDelete();
         projectManagement.clickDeleteConfirmation();
-        Assert.assertEquals(true, projectManagement.deleteMessageConfirmation());
+        assertEquals(true, projectManagement.deleteMessageConfirmation());
     }
 }
 
