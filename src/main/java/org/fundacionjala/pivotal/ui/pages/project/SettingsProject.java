@@ -20,7 +20,7 @@ public class SettingsProject extends AbstractBasePage {
      *
      * @param projectTitle new Project title.
      */
-    public void ediProjectNAme(final String projectTitle) {
+    public void ediProjectName(final String projectTitle) {
         CommonActions.clickElement(projectName);
         CommonActions.sendKeys(projectName, projectTitle);
     }

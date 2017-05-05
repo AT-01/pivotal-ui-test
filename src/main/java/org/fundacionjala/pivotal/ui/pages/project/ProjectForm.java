@@ -37,12 +37,15 @@ public class ProjectForm extends AbstractBasePage {
     @FindBy(css = "input.tc-account-creator__name")
     private WebElement newAccountProjectTextField;
 
+    @FindBy(css="button[type=\"submit\"]")
+    private WebElement saveNewProjectButton;
+
     /**
      * This method set the projectName in the text field.
      *
      * @param projectName String whit the projectName.
      */
-    private void setProjectNameTextField(final String projectName) {
+    public void setProjectNameTextField(final String projectName) {
         CommonActions.clearTextField(projectNameTextField);
         CommonActions.sendKeys(projectNameTextField, projectName);
     }
@@ -52,7 +55,7 @@ public class ProjectForm extends AbstractBasePage {
      *
      * @param account That is to search.
      */
-    private void setAccountDropDownList(final String account) {
+    public void setAccountDropDownList(final String account) {
         CommonActions.clickElement(accountDropDownList);
         List<WebElement> menuBodyList = driver.findElements(By.xpath("//div[contains(text(), '" + account + "')]"));
         if (menuBodyList.isEmpty()) {
@@ -69,7 +72,7 @@ public class ProjectForm extends AbstractBasePage {
     /**
      * This method click on the new project button.
      *
-     * @return {@link ProjectManagement}
+     * @return {@link ProjectManagement}.
      */
     public ProjectManagement clickCreateProjectButton() {
         CommonActions.clickElement(createButton);
@@ -81,7 +84,7 @@ public class ProjectForm extends AbstractBasePage {
      *
      * @param projectPrivacyType return project privacy type.
      */
-    private void selectedProjectPrivacy(final ProjectPrivacy projectPrivacyType) {
+    public void selectedProjectPrivacy(final ProjectPrivacy projectPrivacyType) {
         WebElement projectPrivacy =
                 driver.findElement(By.cssSelector("input[data-aid='" + projectPrivacyType.toString() + "']"));
         CommonActions.clickElement(projectPrivacy);
@@ -115,5 +118,14 @@ public class ProjectForm extends AbstractBasePage {
         strategyMap.put(PROJECT_PRIVACY,
                 () -> selectedProjectPrivacy(ProjectPrivacy.valueOf(configureMap.get(PROJECT_PRIVACY).toUpperCase())));
         return strategyMap;
+    }
+
+    /**
+     * click on create button
+     * @return new project managment
+     */
+    public ProjectManagement clickCreateButton() {
+        CommonActions.clickElement(saveNewProjectButton);
+        return new ProjectManagement();
     }
 }

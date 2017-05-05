@@ -44,11 +44,6 @@ public final class Environment {
     private static final String REMOTE_PLATFORM = "remotePlatform";
     private static final String REMOTE_PLATFORM_VERSION = "remotePlatformVersion";
     private static final String REMOTE_RESOLUTION = "remoteResolution";
-    private static final String PROJECT_NAME = "projectName";
-    private static final String ACCOUNT_NAME = "accountName";
-    private static final String PROJECT_NEW_NAME = "newprojectName";
-    private static final String DESCRIPTION_NAME = "newdescriptionName";
-
 
     private static Environment environment;
 
@@ -249,40 +244,5 @@ public final class Environment {
         return getEnv(REMOTE_RESOLUTION);
     }
 
-    /**
-     * Get the project's name.
-     *
-     * @return String remote project's name
-     */
-    public String getProjectName() {
-        return getEnv(PROJECT_NAME);
-    }
-
-    /**
-     * Get the account's name.
-     *
-     * @return String remote account's name
-     */
-    public String getAccountName() {
-        return getEnv(ACCOUNT_NAME);
-    }
-
-    /**
-     * Get the account's name.
-     *
-     * @return String remote account's name
-     */
-    public String getProjectNewName() {
-        return getEnv(PROJECT_NEW_NAME);
-    }
-
-    /**
-     * Get the account's name.
-     *
-     * @return String remote account's name
-     */
-    public String getDescriptionName() {
-        return getEnv(DESCRIPTION_NAME);
-    }
 
 }
