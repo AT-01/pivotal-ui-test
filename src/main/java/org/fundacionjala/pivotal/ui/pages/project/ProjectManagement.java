@@ -118,7 +118,7 @@ public class ProjectManagement extends AbstractBasePage {
     /**
      * it click on delte button.
      */
-    public void clickDelete()    {
+    public void clickDelete() {
         CommonActions.clickElement(deleteLink);
     }
 

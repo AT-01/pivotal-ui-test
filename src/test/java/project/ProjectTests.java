@@ -17,7 +17,7 @@ public class ProjectTests {
     static final int PRIORITY_ONE = 1;
     static final int PRIORITY_TWO = 2;
     static final int PRIORITY_THREE = 3;
-    static final String PROJEC_NAME = "";
+    static final String PROJECT_NAME = "";
     static final String ACCOUNT_NAME = "";
     static final String NEW_PROJECT_NAME = "";
     static final String NEW_DESCRIPTION_NAME = "";
@@ -42,13 +42,13 @@ public class ProjectTests {
         ProjectForm projectForm = new ProjectForm();
         ProjectManagement projectManagement = new ProjectManagement();
         projectForm.clickCreateProjectButton();
-        projectForm.setProjectNameTextField(PROJEC_NAME);
+        projectForm.setProjectNameTextField(PROJECT_NAME);
         projectForm.setAccountDropDownList(ACCOUNT_NAME);
         projectForm.selectedProjectPrivacy(ProjectPrivacy.PUBLIC);
         projectForm.clickCreateButton();
         String projectNameOnPivotal = projectManagement.getProjectName();
         //then
-        assertEquals(PROJEC_NAME, projectNameOnPivotal);
+        assertEquals(PROJECT_NAME, projectNameOnPivotal);
 
     }
     /**
