@@ -58,4 +58,14 @@ public final class CommonActions {
         return webElement.getText();
     }
 
+    /**
+     * This method set a text field.
+     *
+     * @param webElement UI element
+     * @param text plain text
+     */
+    public static void setTextField(WebElement webElement, final String text) {
+        clearTextField(webElement);
+        sendKeys(webElement, text);
+    }
 }

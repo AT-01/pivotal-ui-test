@@ -8,3 +8,6 @@ log/
 gradlew
 gradlew.bat
 /cucumber-html-report/
+webdrivers/chromedriver2.25.exe
+drivers
+classes
